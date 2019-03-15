@@ -5,6 +5,12 @@ import taru.luo.graduation.entity.UserInfo;
 
 @Service
 public interface UserInfoService {
-    void add(UserInfo userInfo);
+    void insert(UserInfo userInfo);
+
+    void update(UserInfo userInfo);
+
+    void delete(UserInfo userInfo);
+
+
 
 }
