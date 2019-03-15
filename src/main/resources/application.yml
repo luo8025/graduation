@@ -1,0 +1,17 @@
+server:
+  port: 9505
+
+mybatis:
+    typeAliasesPackage: taru.luo.graduation.entity
+    mapperLocations: classpath:mapper/*.xml
+
+spring:
+  application:
+    name: taru
+  datasource:
+    url: jdbc:mysql://120.78.156.24:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+    username: myuser
+    password: 123456
+
+
+
