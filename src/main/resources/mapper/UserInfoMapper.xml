@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="taru.luo.graduation.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="taru.luo.graduation.entity.UserInfo">
+    <constructor>
+      <arg column="ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PHOTO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TELPHONE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SEX" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="AGE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DELETED" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="taru.luo.graduation.entity.UserInfo">
+    insert into USER_INFO (ID, USERNAME, PHOTO, 
+      TELPHONE, EMAIL, SEX, 
+      AGE, ADDRESS, DELETED
+      )
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{telphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{age,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{deleted,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="taru.luo.graduation.entity.UserInfo">
+    insert into USER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="photo != null">
+        PHOTO,
+      </if>
+      <if test="telphone != null">
+        TELPHONE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="age != null">
+        AGE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null">
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="taru.luo.graduation.entity.UserInfo">
+    <constructor>
+      <arg column="ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PHOTO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TELPHONE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SEX" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="AGE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="CREATE_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LAST_EDITOR_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LAST_EDITOR_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DELETOR_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DELETOR_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DELETED" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="taru.luo.graduation.entity.UserInfo">
+    insert into USER_INFO (ID, USERNAME, PHOTO, 
+      TELPHONE, EMAIL, SEX, 
+      AGE, ADDRESS, CREATE_TIME, 
+      CREATE_ID, LAST_EDITOR_ID, LAST_EDITOR_TIME, 
+      DELETOR_ID, DELETOR_TIME, DELETED
+      )
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{telphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{age,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=VARCHAR}, #{lastEditorId,jdbcType=VARCHAR}, #{lastEditorTime,jdbcType=TIMESTAMP}, 
+      #{deletorId,jdbcType=VARCHAR}, #{deletorTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="taru.luo.graduation.entity.UserInfo">
+    insert into USER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="photo != null">
+        PHOTO,
+      </if>
+      <if test="telphone != null">
+        TELPHONE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="age != null">
+        AGE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="lastEditorId != null">
+        LAST_EDITOR_ID,
+      </if>
+      <if test="lastEditorTime != null">
+        LAST_EDITOR_TIME,
+      </if>
+      <if test="deletorId != null">
+        DELETOR_ID,
+      </if>
+      <if test="deletorTime != null">
+        DELETOR_TIME,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null">
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEditorId != null">
+        #{lastEditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEditorTime != null">
+        #{lastEditorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletorId != null">
+        #{deletorId,jdbcType=VARCHAR},
+      </if>
+      <if test="deletorTime != null">
+        #{deletorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

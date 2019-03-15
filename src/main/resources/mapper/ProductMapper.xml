@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="taru.luo.graduation.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="taru.luo.graduation.entity.Product">
+    <constructor>
+      <arg column="ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCT_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCT_PHOTO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCT_PRICE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCT_UNIT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCT_CATEGORY" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="CREATE_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LAST_EDITOR_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LAST_EDITOR_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DELETOR_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DELETOR_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DELETED" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="taru.luo.graduation.entity.Product">
+    insert into PRODUCT (ID, PRODUCT_NAME, PRODUCT_PHOTO, 
+      PRODUCT_PRICE, PRODUCT_UNIT, PRODUCT_CATEGORY, 
+      CREATE_TIME, CREATE_ID, LAST_EDITOR_ID, 
+      LAST_EDITOR_TIME, DELETOR_ID, DELETOR_TIME, 
+      DELETED)
+    values (#{id,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productPhoto,jdbcType=VARCHAR}, 
+      #{productPrice,jdbcType=VARCHAR}, #{productUnit,jdbcType=VARCHAR}, #{productCategory,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR}, #{lastEditorId,jdbcType=VARCHAR}, 
+      #{lastEditorTime,jdbcType=TIMESTAMP}, #{deletorId,jdbcType=VARCHAR}, #{deletorTime,jdbcType=TIMESTAMP}, 
+      #{deleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="taru.luo.graduation.entity.Product">
+    insert into PRODUCT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="productPhoto != null">
+        PRODUCT_PHOTO,
+      </if>
+      <if test="productPrice != null">
+        PRODUCT_PRICE,
+      </if>
+      <if test="productUnit != null">
+        PRODUCT_UNIT,
+      </if>
+      <if test="productCategory != null">
+        PRODUCT_CATEGORY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="lastEditorId != null">
+        LAST_EDITOR_ID,
+      </if>
+      <if test="lastEditorTime != null">
+        LAST_EDITOR_TIME,
+      </if>
+      <if test="deletorId != null">
+        DELETOR_ID,
+      </if>
+      <if test="deletorTime != null">
+        DELETOR_TIME,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPhoto != null">
+        #{productPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null">
+        #{productPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productUnit != null">
+        #{productUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategory != null">
+        #{productCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEditorId != null">
+        #{lastEditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEditorTime != null">
+        #{lastEditorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletorId != null">
+        #{deletorId,jdbcType=VARCHAR},
+      </if>
+      <if test="deletorTime != null">
+        #{deletorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="taru.luo.graduation.entity.Product">
+    <constructor>
+      <arg column="ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCT_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCT_PHOTO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCT_PRICE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCT_UNIT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PRODUCT_CATEGORY" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="CREATE_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LAST_EDITOR_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LAST_EDITOR_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DELETOR_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DELETOR_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DELETED" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="taru.luo.graduation.entity.Product">
+    insert into PRODUCT (ID, PRODUCT_NAME, PRODUCT_PHOTO, 
+      PRODUCT_PRICE, PRODUCT_UNIT, PRODUCT_CATEGORY, 
+      CREATE_TIME, CREATE_ID, LAST_EDITOR_ID, 
+      LAST_EDITOR_TIME, DELETOR_ID, DELETOR_TIME, 
+      DELETED)
+    values (#{id,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productPhoto,jdbcType=VARCHAR}, 
+      #{productPrice,jdbcType=VARCHAR}, #{productUnit,jdbcType=VARCHAR}, #{productCategory,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR}, #{lastEditorId,jdbcType=VARCHAR}, 
+      #{lastEditorTime,jdbcType=TIMESTAMP}, #{deletorId,jdbcType=VARCHAR}, #{deletorTime,jdbcType=TIMESTAMP}, 
+      #{deleted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="taru.luo.graduation.entity.Product">
+    insert into PRODUCT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="productPhoto != null">
+        PRODUCT_PHOTO,
+      </if>
+      <if test="productPrice != null">
+        PRODUCT_PRICE,
+      </if>
+      <if test="productUnit != null">
+        PRODUCT_UNIT,
+      </if>
+      <if test="productCategory != null">
+        PRODUCT_CATEGORY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="lastEditorId != null">
+        LAST_EDITOR_ID,
+      </if>
+      <if test="lastEditorTime != null">
+        LAST_EDITOR_TIME,
+      </if>
+      <if test="deletorId != null">
+        DELETOR_ID,
+      </if>
+      <if test="deletorTime != null">
+        DELETOR_TIME,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPhoto != null">
+        #{productPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null">
+        #{productPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productUnit != null">
+        #{productUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategory != null">
+        #{productCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEditorId != null">
+        #{lastEditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEditorTime != null">
+        #{lastEditorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletorId != null">
+        #{deletorId,jdbcType=VARCHAR},
+      </if>
+      <if test="deletorTime != null">
+        #{deletorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
