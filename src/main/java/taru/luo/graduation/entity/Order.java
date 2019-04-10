@@ -3,18 +3,18 @@ package taru.luo.graduation.entity;
 import lombok.Data;
 
 @Data
-public class Product {
+public class Order {
     private String id;
 
     private String name;
 
-    private String photo;
+    private String count;
 
-    private String describe;
+    private String unit;
 
-    private String price;
+    private String total;
 
-    private String keyword;
+    private String time;
 
     private String deleted;
 }

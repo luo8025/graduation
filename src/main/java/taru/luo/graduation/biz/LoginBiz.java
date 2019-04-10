@@ -8,7 +8,7 @@ import taru.luo.graduation.mapper.UserMapper;
 import java.util.List;
 
 @Service
-public class UserInfoBiz {
+public class LoginBiz {
     @Autowired
     UserMapper userMapper;
 

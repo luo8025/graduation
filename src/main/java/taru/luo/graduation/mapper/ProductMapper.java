@@ -1,10 +1,10 @@
 package taru.luo.graduation.mapper;
 
+import org.springframework.stereotype.Repository;
 import taru.luo.graduation.entity.Product;
-import taru.luo.graduation.mapper.base.BizMapper;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface ProductMapper extends BizMapper<Product> {
-    int insert(Product record);
+@Repository
+public interface ProductMapper extends Mapper<Product> {
 
-    int insertSelective(Product record);
 }

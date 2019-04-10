@@ -2,19 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="taru.luo.graduation.mapper.LoginMapper">
   <resultMap id="BaseResultMap" type="taru.luo.graduation.entity.Login">
-    <constructor>
-      <arg column="ID" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="USERNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="PASSWORD" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="TELPHONE" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="CREATE_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="LAST_EDITOR_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="LAST_EDITOR_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="DELETOR_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="DELETOR_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="DELETED" javaType="java.lang.String" jdbcType="VARCHAR" />
-    </constructor>
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="CLASSES" property="classes" jdbcType="VARCHAR" />
+    <result column="DELETED" property="deleted" jdbcType="VARCHAR" />
   </resultMap>
 </mapper>
