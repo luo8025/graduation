@@ -2,27 +2,29 @@ package taru.luo.graduation.biz;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import taru.luo.graduation.entity.Shopping;
 import taru.luo.graduation.entity.User;
+import taru.luo.graduation.mapper.ShoppingMapper;
 import taru.luo.graduation.mapper.UserMapper;
+import taru.luo.graduation.vo.ShoppingVO;
 
 import java.util.List;
 
 @Service
 public class ShoppingBiz {
     @Autowired
-    UserMapper userMapper;
+    private ShoppingMapper shoppingMapper;
 
-    public void insert(User user){
-        userMapper.insertSelective(user);
+    public void addShopping(Shopping shopping){
+        shoppingMapper.addShopping(shopping);
     }
 
-    public User getUserInfoById(String id){
-        return userMapper.selectByPrimaryKey(id);
+    public List<ShoppingVO> selectShoppingByUserId(String id){
+        return shoppingMapper.selectShoppingByUserId(id);
     }
 
-
-    public List<User> selectAll(){
-        return userMapper.selectAll();
+    public void deleteShopping(String id){
+        shoppingMapper.deleteShopping(id);
     }
 
 }

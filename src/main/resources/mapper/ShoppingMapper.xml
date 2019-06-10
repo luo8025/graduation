@@ -7,4 +7,37 @@
     <result column="PRODUCTID" property="productId" jdbcType="VARCHAR" />
     <result column="DELETED" property="deleted" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="shoppingVO" type="taru.luo.graduation.vo.ShoppingVO">
+    <id column="ID" property="productId" jdbcType="VARCHAR" />
+    <result column="SHOPPING_ID" property="shoppingId" jdbcType="VARCHAR" />
+    <result column="PHOTO" property="productPhoto" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PRICE" property="productPrice" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="addShopping" parameterType="taru.luo.graduation.entity.Shopping">
+    insert  into  shopping values (UUID(),#{userId},#{productId},'0')
+  </insert>
+  
+  <select id="selectShoppingByUserId" parameterType="java.lang.String" resultMap="shoppingVO">
+    SELECT
+	p.ID,
+	s.ID SHOPPING_ID,
+	p.PHOTO,
+	p.PRICE,
+	p.PRODUCT_NAME
+    FROM
+        shopping s
+    left JOIN product p ON s.PROCUDTID = p.ID AND p.DELETED='0'
+    WHERE
+        s.DELETED = '0' AND s.USERID=#{id}
+  </select>
+
+  <update id="deleteShopping" parameterType="java.lang.String">
+    UPDATE shopping s
+    SET s.DELETED = '1'
+    WHERE
+        s.ID = #{id}
+  </update>
 </mapper>

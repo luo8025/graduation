@@ -6,15 +6,17 @@ import lombok.Data;
 public class Product {
     private String id;
 
-    private String name;
+    private String productName;
 
     private String photo;
 
-    private String describe;
+    private String description;
 
     private String price;
 
-    private String keyword;
+    private String keyWord;
+
+    private String createId;
 
     private String deleted;
 }

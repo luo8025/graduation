@@ -2,29 +2,28 @@ package taru.luo.graduation.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import taru.luo.graduation.biz.UserInfoBiz;
+import org.springframework.util.StringUtils;
+import taru.luo.graduation.biz.UserBiz;
 import taru.luo.graduation.entity.User;
 import taru.luo.graduation.service.UserService;
-
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserInfoBiz userInfoBiz;
+    UserBiz userBiz;
 
     @Override
-    public User getUserInfoById(String id) {
-        return userInfoBiz.getUserInfoById(id);
+    public User Login(String username, String password) {
+        return userBiz.Login(username,password);
     }
 
     @Override
-    public List<User> selectAll() {
-        return userInfoBiz.selectAll();
+    public void updateUser(User user) {
+        userBiz.updateUser(user);
     }
 
     @Override
-    public void insert(User user) {
-        userInfoBiz.insert(user);
+    public void addUser(User user) {
+        userBiz.addUser(user);
     }
 }

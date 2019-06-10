@@ -3,11 +3,129 @@
 <mapper namespace="taru.luo.graduation.mapper.OrderMapper">
   <resultMap id="BaseResultMap" type="taru.luo.graduation.entity.Order">
     <id column="ID" property="id" jdbcType="VARCHAR" />
-    <result column="NAME" property="username" jdbcType="VARCHAR" />
-    <result column="COUNT" property="photo" jdbcType="VARCHAR" />
-    <result column="UNIT" property="telephone" jdbcType="VARCHAR" />
-    <result column="TOTAL" property="email" jdbcType="VARCHAR" />
-    <result column="TIME" property="address" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="COUNT" property="count" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="VARCHAR" />
+    <result column="TOTAL" property="total" jdbcType="VARCHAR" />
+    <result column="TIME" property="time" jdbcType="VARCHAR" />
+    <result column="BUY_USER" property="buyUser" jdbcType="VARCHAR" />
+    <result column="MERCHANT" property="merchant" jdbcType="VARCHAR" />
+      <result column="STATUS" property="status" jdbcType="VARCHAR" />
     <result column="DELETED" property="deleted" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="OrderVO" type="taru.luo.graduation.vo.OrderVO">
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="COUNT" property="count" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="VARCHAR" />
+    <result column="TOTAL" property="total" jdbcType="VARCHAR" />
+    <result column="TIME" property="time" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+
+    <resultMap id="UserOrderVO" type="taru.luo.graduation.vo.UserOrderVO">
+        <id column="ID" property="orderId" jdbcType="VARCHAR" />
+        <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+        <result column="TOTAL" property="orderTotal" jdbcType="VARCHAR" />
+        <result column="TIME" property="orderTime" jdbcType="VARCHAR" />
+        <result column="STATUS" property="orderStatus" jdbcType="VARCHAR" />
+    </resultMap>
+  <insert id="addOrder" parameterType="taru.luo.graduation.entity.Order">
+    INSERT INTO `order` VALUES (UUID(),#{productId},#{count},#{price},#{total},NOW(),#{merchant},#{buyUser},'已支付','0')
+  </insert>
+
+  <select id="getMerchantOrder" parameterType="java.lang.String" resultMap="OrderVO">
+    SELECT
+	o.ID,
+	o.COUNT,
+	o.PRICE,
+	o.STATUS,
+	o.TIME,
+	o.TOTAL,
+	u.USERNAME,
+	p.PRODUCT_NAME
+    FROM
+        `order` o
+    LEFT JOIN `user` u ON o.MERCHANT = u.ID
+    LEFT JOIN product p ON o.PRODUCT_ID = p.ID
+    WHERE
+        o.DELETED = '0'
+    AND o.MERCHANT = #{id}
+  </select>
+
+  <select id="getOldOrder" parameterType="java.lang.String" resultMap="OrderVO">
+    SELECT
+	o.ID,
+	o.COUNT,
+	o.PRICE,
+	o.STATUS,
+	o.TIME,
+	o.TOTAL,
+	u.USERNAME,
+	p.PRODUCT_NAME
+    FROM
+        `order` o
+    LEFT JOIN `user` u ON o.BUY_USER = u.ID
+    LEFT JOIN product p ON o.PRODUCT_ID = p.ID
+    WHERE
+        o.DELETED = '1'
+    AND o.MERCHANT = #{id}
+  </select>
+  <select id="selectOrderByUserId" parameterType="java.lang.String" resultMap="UserOrderVO">
+        SELECT
+	    o.ID,o.TOTAL,o.TIME,p.PRODUCT_NAME,o.`STATUS`
+        FROM
+            `order` o
+        LEFT JOIN `user` u ON o.BUY_USER = u.ID
+        AND u.DELETED = '0'
+        LEFT JOIN product p ON p.ID=o.PRODUCT_ID
+        WHERE
+            o.DELETED = '0' AND o.BUY_USER=#{id}
+  </select>
+
+    <update id="overOrder" parameterType="java.lang.String">
+        UPDATE `order` o
+        SET o. STATUS = '已签收',
+         o.deleted = '1'
+        WHERE
+            o.ID = #{id}
+    </update>
+
+    <update id="cancelOrder" parameterType="java.lang.String">
+        UPDATE `order` o
+        SET o. STATUS = '买家已取消'
+        WHERE
+            o.ID = #{id}
+    </update>
+
+    <select id="selectOldOrderByUserId" parameterType="java.lang.String" resultMap="UserOrderVO">
+        SELECT
+	    o.ID,o.TOTAL,o.TIME,p.PRODUCT_NAME,o.`STATUS`
+        FROM
+            `order` o
+        LEFT JOIN `user` u ON o.BUY_USER = u.ID
+        AND u.DELETED = '0'
+        LEFT JOIN product p ON p.ID=o.PRODUCT_ID
+        WHERE
+            o.DELETED = '1' AND o.BUY_USER=#{id}
+  </select>
+
+
+    <update id="cancelOverOrder" parameterType="java.lang.String">
+        UPDATE `order` o
+        SET o. STATUS = '买家取消,商家已确定',
+         o.deleted = '1'
+        WHERE
+            o.ID = #{id}
+    </update>
+
+
+    <update id="goOrder" parameterType="java.lang.String">
+        UPDATE `order` o
+        SET o. STATUS = '商家发货'
+        WHERE
+            o.ID = #{id}
+    </update>
 </mapper>

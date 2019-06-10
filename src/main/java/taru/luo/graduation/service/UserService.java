@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface UserService {
 
-    User getUserInfoById(String id);
+    User Login(String username,String password);
 
-    List<User> selectAll();
+    void updateUser(User user);
 
-    void insert(User user);
+    void addUser(User user);
 
 
 }

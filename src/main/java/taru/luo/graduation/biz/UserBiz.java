@@ -8,21 +8,20 @@ import taru.luo.graduation.mapper.UserMapper;
 import java.util.List;
 
 @Service
-public class LoginBiz {
+public class UserBiz {
     @Autowired
     UserMapper userMapper;
 
-    public void insert(User user){
-        userMapper.insertSelective(user);
+    public User Login(String username,String password){
+       return userMapper.Login(username,password);
     }
 
-    public User getUserInfoById(String id){
-        return userMapper.selectByPrimaryKey(id);
+    public void updateUser(User user){
+        userMapper.updateUser(user);
     }
 
-
-    public List<User> selectAll(){
-        return userMapper.selectAll();
+    public void addUser(User user){
+        userMapper.addUser(user);
     }
 
 }

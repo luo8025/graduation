@@ -3,12 +3,12 @@ package taru.luo.graduation.entity;
 import lombok.Data;
 
 @Data
-public class User {
+public class Merchant {
     private String id;
 
-    private String username;
+    private String merchantName;
 
-    private String password;
+    private String merchantPassword;
 
     private String deleted;
 }

@@ -1,13 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="taru.luo.graduation.mapper.ProductMapper">
-  <resultMap id="BaseResultMap" type="taru.luo.graduation.entity.Product">
+  <resultMap id="product" type="taru.luo.graduation.entity.Product">
     <id column="ID" property="id" jdbcType="VARCHAR" />
-    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
     <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
-    <result column="DESCRIBE" property="telephone" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
     <result column="PRICE" property="price" jdbcType="VARCHAR" />
-    <result column="KEYWORD" property="keyWord" jdbcType="VARCHAR" />
+    <result column="KEY_WORD" property="keyWord" jdbcType="VARCHAR" />
     <result column="DELETED" property="deleted" jdbcType="VARCHAR" />
+    <result column="CREATEID" property="createId" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="productVO" type="taru.luo.graduation.vo.ProductVO">
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="VARCHAR" />
+    <result column="MERCHANT_NAME" property="merchantName" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="addProduct" parameterType="taru.luo.graduation.entity.Product">
+    INSERT INTO product(ID,PRODUCT_NAME,PHOTO,DESCRIPTION,PRICE,KEY_WORD,DELETED,CREATEID)
+      VALUES(
+      UUID(),
+      #{productName},
+      #{photo},
+      #{description},
+      #{price},
+      #{keyWord},
+      '0',
+      #{createId}
+	)
+  </insert>
+
+  <update id="updateProduct" parameterType="taru.luo.graduation.entity.Product">
+    UPDATE product p SET
+    <if test="id != null" >
+    p.ID=#{id,jdbcType=VARCHAR},
+    </if>
+    <if test="productName != null" >
+      p.PRODUCT_NAME=#{productName,jdbcType=VARCHAR},
+    </if>
+    <if test="photo != null" >
+      p.PHOTO=#{photo,jdbcType=VARCHAR},
+    </if>
+    <if test="description != null" >
+      p.DESCRIPTION=#{description,jdbcType=VARCHAR},
+    </if>
+    <if test="price != null" >
+      p.PRICE=#{price,jdbcType=VARCHAR},
+    </if>
+    <if test="keyWord != null" >
+      p.KEY_WORD=#{keyWord,jdbcType=VARCHAR},
+    </if>
+    <if test="deleted != null" >
+      p.DELETED=#{deleted,jdbcType=VARCHAR}
+    </if>
+    WHERE p.ID=#{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="deleteProduct" parameterType="java.lang.String">
+    UPDATE product p SET
+      p.DELETED='1'
+    WHERE p.ID=#{id}
+  </update>
+
+
+  <select id="selectAll" resultMap="product">
+    select * from product where deleted=0
+  </select>
+
+  <select id="getProduct" parameterType="java.lang.String" resultMap="product">
+    select * from product where id=#{id}
+  </select>
+
+  <select id="selectProductList" parameterType="java.lang.String" resultMap="product">
+    select * from product where createId=#{id} and deleted=0
+  </select>
+
+  <select id="productDeleteList" parameterType="java.lang.String" resultMap="product">
+    select * from product where createId=#{id} and deleted=1
+  </select>
+
+  <select id="selectAllBuy" resultMap="productVO">
+    SELECT
+	p.ID,
+	p.PHOTO,
+	p.PRICE,
+	p.PRODUCT_NAME,
+	m.MERCHANT_NAME
+    FROM
+        product p
+    LEFT JOIN merchant m ON p.CREATEID = m.ID
+    WHERE
+        p.DELETED = '0'
+  </select>
+
+  <select id="selectProductById" parameterType="java.lang.String" resultMap="product">
+    select * from product p where p.deleted='0'and p.id=#{id}
+  </select>
 </mapper>

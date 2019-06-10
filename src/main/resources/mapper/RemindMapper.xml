@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="taru.luo.graduation.mapper.RemindMapper">
+  <resultMap id="BaseResultMap" type="taru.luo.graduation.entity.Remind">
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="REMIND_ID" property="remindId" jdbcType="VARCHAR" />
+    <result column="REMIND_TEXT" property="remindText" jdbcType="VARCHAR" />
+    <result column="REMIND_TIME" property="remindTime" jdbcType="VARCHAR" />
+    <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="DELETED" property="deleted" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="addRemind" parameterType="taru.luo.graduation.entity.Remind">
+    insert into remind values (UUID(),#{remindId},#{remindText},NOW(),#{productId},#{status},#{deleted});
+  </insert>
+
+  <select id="remindList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+	*
+    FROM
+        remind r
+    WHERE
+        r.REMIND_ID = #{id}
+    AND r.DELETED = '0'
+  </select>
+
+  <update id="updateStatus" parameterType="java.lang.String">
+    UPDATE remind r
+    SET r.`STATUS` = '已读',
+    r.DELETED='1'
+    WHERE
+        r.ID = #{id}
+  </update>
+
+
+</mapper>

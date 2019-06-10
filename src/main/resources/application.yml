@@ -1,5 +1,5 @@
 server:
-  port: 9505
+  port: 8080
 
 mybatis:
     typeAliasesPackage: taru.luo.graduation.entity
@@ -9,9 +9,14 @@ spring:
   application:
     name: taru
   datasource:
-    url: jdbc:mysql://120.78.156.24:3306/graduation?useUnicode=true
+    url: jdbc:mysql://120.78.156.24:3306/graduation?useUnicode=true&characterEncoding=UTF-8
     username: myuser
     password: 123456
+
+file:
+  path:
+    real: E:\img
+    fictitious: http://localhost:8080/image/
 
 
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="taru.luo.graduation.mapper.MerchantMapper">
+  <resultMap id="BaseResultMap" type="taru.luo.graduation.entity.Merchant">
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MERCHANT_PASSWORD" property="merchantPassword" jdbcType="VARCHAR" />
+    <result column="MERCHANT_NAME" property="merchantName" jdbcType="VARCHAR" />
+    <result column="DELETED" property="deleted" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="Login" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+	*
+    FROM
+        `merchant` u
+    WHERE
+        u.DELETED = '0'
+    AND u.MERCHANT_NAME = #{username}
+    AND u.MERCHANT_PASSWORD = #{password}
+  </select>
+
+  <update id="updateMerchant" parameterType="taru.luo.graduation.entity.Merchant">
+    UPDATE `merchant` m
+    SET m.MERCHANT_NAME= #{merchantName},
+     m.MERCHANT_PASSWORD = #{merchantPassword}
+    WHERE
+        m.ID = #{id}
+    AND m.DELETED = '0'
+  </update>
+
+  <insert id="addMerchant" parameterType="taru.luo.graduation.entity.Merchant">
+    INSERT INTO `merchant`
+    VALUES
+      (UUID(), #{merchantName}, #{merchantPassword} ,'0')
+  </insert>
+</mapper>
